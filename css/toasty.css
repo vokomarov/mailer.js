@@ -1,0 +1,102 @@
+.toasty_msgMask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 995;
+}
+.toasty_msgMeasureBox {
+     display:inline-block;
+     position: fixed;
+     left: 100%
+}
+.toasty_msgContainer{
+    display:inline-block;
+    position:fixed;
+    text-align:left;
+    z-index: 1000;
+    text-align: left;
+}
+.toasty_msgContainer.br{ right: 0px; bottom: 0; }
+.toasty_msgContainer.bl{ left: 0px; bottom: 0; }
+.toasty_msgContainer.tr{ right: 0px; top: 10px; }
+.toasty_msgContainer.tl{ left: 0px; top: 0; }
+.toasty_msgContainer.tc{ left: 50%; top: 0; }
+.toasty_msgContainer.bc{ left: 50%; bottom: 0; }
+.toasty_msgContainer.tc .toasty_subContainer{ position: absolute; left: -150px; top: 30px; }
+.toasty_msgContainer.bc .toasty_subContainer{ position: absolute; left: -150px; bottom: 0px; }
+.toasty_msgContainer.tl .toasty_toastMsg, .toasty_msgContainer.tc .toasty_toastMsg, .toasty_msgContainer.tr .toasty_toastMsg {
+    position: absolute;
+    bottom: 0;
+}
+.toasty_msgContainer.tl .toasty_toastHolder, .toasty_msgContainer.tc .toasty_toastHolder, .toasty_msgContainer.tr .toasty_toastHolder {
+    position: relative;
+    width: 310px;
+}
+.toasty_toastMsg {
+	width: 260px;
+	display: inline-block;
+	background: #282828;
+	border: 0;
+	margin: 0px 0px -6px 0px;
+	padding: 10px 20px;
+	color: #fff;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+.tc .toasty_toastMsg{
+	text-align: center;
+}
+.toasty_toastMsg a{
+	color: inherit;
+	display: block;
+	text-align: center;
+}
+.toasty_toastMsg input[type="text"]{
+	height: 28px;
+	line-height: 28px;
+	width: 80px;
+	background: #fff;
+	border: 0;
+	margin: 0px 0 0 0;
+	text-align: center;
+}
+.toasty_toastMsg input[type="button"]{
+	cursor: pointer;
+	border: 0;
+	background: #fff;
+	width: 75px;
+	height: 30px;
+	margin: 0px 0px 0px 0px;
+}
+.toasty_toastMsg #cap{
+	margin: 8px 0 0 0px;
+}
+.toasty_toastMsg .toasty_closeBtn {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin-right: 5px;
+}
+.toasty_toastMsg .toasty_title{
+    text-decoration: underline;
+    text-align: center;
+    padding: 2px;
+}
+.toasty_toastMsg .toasty_message{
+    margin: 10px;
+}
+.toasty_toastMsg .toasty_head {
+    position: relative;
+}
+.toasty_toastMsg .toasty_autoHideTimer {
+    background-color: #eee;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+}
