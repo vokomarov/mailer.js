@@ -11,14 +11,36 @@
 + Гнучка інформативність про статус відправки
 
 ## Швидкий старт
-Щоб почати використовувати плагін, необхідно завантажити файли плагіну:
+Щоб почати використовувати плагін, необхідно завантажити папку плагіну **mailer.js** зі всім її вмістом.
+Далі необхідно оголосити скріпт виклику бібліотеки в секції ***head*** вашої сторінки, або перед закриваючим тегом ***body***:
 
-```ruby
-\mailer.js\mailer.css
-\mailer.js\mailer.js
-\mailer.js\mailer.php
+```html
+<script src="jquery.js" type="text/javascript"></script>
+<script src="mailer.js/mailer.js" type="text/javascript"></script>
 ```
 
-## Параметри
+Тепер можна ініціалізувати плагін:
 
-Here's an idea: why don't we take `SuperiorProject` and turn it into `**Reasonable**Project`.
+```javascript
+$(document).ready(function(){
+    $("#form-box").mailer();
+});
+```
+
+Зверніть увагу! Ідентифікатор **#form-box** вказує на контейнер, що містить у собі поля форми та одну кнопку з іменем *submit*
+Приклади обов’язкової конфігурації:
+
+```html
+<form id="form-cont">
+	<!-- ваші поля -->
+	<input name="submit">
+</form>
+```
+```html
+<div class="foo">
+	<!-- ваші поля -->
+	<button name="submit">
+</div>
+```
+## Конфігурація
+## Конфігурація
