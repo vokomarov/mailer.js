@@ -4,3 +4,9 @@
 */cache/*
 */cache/!index.html
 */cache/!.htaccess
+*/.idea/*
+*/.idea/*.xml
+*/.idea/*.iml
+*/.idea/*.name
+*/.idea/scopes/*
+*/.idea/scopes/*.xml
