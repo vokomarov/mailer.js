@@ -43,4 +43,11 @@ $(document).ready(function(){
 </div>
 ```
 ## Конфігурація
-## Конфігурація
+
+```javascript
+$(document).ready(function(){
+    $("#form-box").mailer({
+        validate: true
+    });
+});
+```
