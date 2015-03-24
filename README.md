@@ -51,3 +51,9 @@ $(document).ready(function(){
     });
 });
 ```
+
+## Типи данних для валідації
++ isPhone
++ isString
++ isDigit
++ isEmail

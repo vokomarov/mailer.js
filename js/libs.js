@@ -64,7 +64,7 @@ function validate(obj){
 				return val;
 			}
 		}else if(mode == "isString"){
-			regexp=/[0-9a-zA-Zа-яА-Яії.,!-=]+/i;
+			regexp=/^[a-zA-ZА-Яа-я0-9_.+-іїь]+/i;
 			if(!regexp.test(val)){
 				state(obj, false);
 				return false;
@@ -102,7 +102,7 @@ function validate(obj){
 $(document).ready(function(){
 	//+7 (904) 394 90 13
 	$('#phone, #phone2, #phone3, #phone4, #phone5').mask("+7 (999) 999 99 99");
-	$('.return-top').click(function() {
+	$('.return-top').click(function(){
 		$('body,html').animate({scrollTop:0},800);
 			return false;
 	});

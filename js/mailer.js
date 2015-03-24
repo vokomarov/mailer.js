@@ -1,22 +1,33 @@
 /**
  * Created by VovanMS on 26.01.15.
  */
+var id_counter = 0;
 (function($){
 	$.fn.mailer = function(my_param){
 
 		// Стандартний конфіг
 		var config = $.extend({
+			formId: 0,
 			showMessages: true,
 			validation: false,
 			errorClass: 'error',
 			requireClass: 'require',
 			validationAttr: 'data-validate',
+			url: '../mail.php',
 			hasError: false,
 			data: {}
 		}, my_param);
 
 		return this.each(function(){
+
+			//save form handle
 			var $this = $(this);
+
+			//set form id
+			config.formId = id_counter;
+			id_counter++;
+
+			log("registered form", config);
 
 			var s_button = $this.find("[type='submit']");
 			if(!s_button){
@@ -27,26 +38,57 @@
 
 				s_button.click(function(){
 
+					//clear data and previous errors
+					config.data = {};
+					$this.find('.'+config.errorClass).removeClass(config.errorClass);
+
 					$this.find("[name]").each(function(){
 						if(!$(this).is("[name='submit']")){
 							//all inputs find there - this
 
-							if(config.validation){
-								validate($(this), config)
-							}
+							//build form data to config.data
 							var name = $(this).attr("name");
-							config.data[name] = $(this).val();
+							if(config.validation){
+								var value = validate($(this), config);
+								if(value)
+									config.data[name] = value;
+							}else{
+								config.data[name] = $(this).val();
+							}
+
 
 						}
 					});
 
 
-
 					if(!config.hasError){
-						log("Validation pass");
+						log("Validation pass", config);
+						console.log(config.data);
+
+						var setting = {},
+							post = {};
+
+						setting['formId'] = config.formId;
+
+						post['setting'] = setting;
+						post['data'] = config.data;
+
+						//send to php module
+						$.ajax({
+							url: config.url,
+							method: 'POST',
+							data: post,
+							error: function(response){},
+							success: function(response){
+								console.log(response);
+							}
+						});
+
+
+
 					}else{
 						//error, show message
-						log("Validation error.");
+						log("Validation error.", config);
 					}
 
 
@@ -57,7 +99,6 @@
 				});
 
 				//don't send form
-
 				if($this.is('form')){
 					$this.submit(function(){
 						return false;
@@ -147,11 +188,11 @@
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
-	function log(text){
-		console.log("mailer.js: " + text);
+	function log(text, config){
+		console.log("mailer.js[form " + config.formId + "]: " + text);
 	}
 
 })(jQuery);

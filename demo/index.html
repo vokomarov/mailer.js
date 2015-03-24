@@ -13,6 +13,10 @@
 				validation: true
 			});
 
+			$(".form-box-new").mailer({
+				validation: true
+			});
+
 		});
 	</script>
 	<style>
@@ -31,6 +35,24 @@
 
 		<p class="lead">Тут я його тестую кароч</p>
 		<p>І так, перша форма, просте текстове поле з кнопкою - мінімальна конфігурація</p>
+
+		<form class="form-horizontal form-box-new">
+
+			<!-- one field -->
+			<div class="form-group">
+				<label for="inputString" class="col-sm-2 control-label">String</label>
+				<div class="col-sm-10">
+					<input name="username" type="text" class="form-control"  placeholder="String" data-validate="isString">
+				</div>
+			</div>
+			<!-- /one field -->
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button name="submit" type="submit" class="btn btn-default" value="as">Тест</button>
+				</div>
+			</div>
+		</form>
 
 		<form class="form-horizontal form-box">
 
