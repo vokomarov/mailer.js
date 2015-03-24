@@ -14,6 +14,13 @@ require_once('libs.php');
  * <img src="/captcha/captcha.php" id="cap" alt="" width="148"><br>
  * <a href="" onClick="$('#cap').attr('src','/captcha/captcha.php?1='+Math.random());return false;">обновить</a>
  * */
+//print_r($_POST);
+//print_r($_POST['data']);
+echo 'callback by formid: '.$_POST['setting']['formId'].'\n';
+foreach($_POST['data'] as $name=>$value){
+    echo 'name['.$name.'] = '.$value.'\n';
+}
+exit;
 
 function captureData($s){
 	if (strlen($s) == 4 && preg_match('/\d{4}/',$s)) {

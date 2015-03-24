@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo page</title>
+	<meta charset="utf-8">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	<script src="../js/mailer.js" type="text/javascript"></script>
+	<script>
+		$(document).ready(function(){
+			$(".form-box").mailer({
+				validation: true
+			});
+
+			$(".form-box-new").mailer({
+				validation: true
+			});
+
+		});
+	</script>
+	<style>
+		.container{
+			width: 500px;
+		}
+		.error{
+			border: 1px red solid;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+
+		<h1>mailer.js demo page</h1>
+
+		<p class="lead">Тут я його тестую кароч</p>
+		<p>І так, перша форма, просте текстове поле з кнопкою - мінімальна конфігурація</p>
+
+		<form class="form-horizontal form-box-new">
+
+			<!-- one field -->
+			<div class="form-group">
+				<label for="inputString" class="col-sm-2 control-label">String</label>
+				<div class="col-sm-10">
+					<input name="username" type="text" class="form-control"  placeholder="String" data-validate="isString">
+				</div>
+			</div>
+			<!-- /one field -->
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button name="submit" type="submit" class="btn btn-default" value="as">Тест</button>
+				</div>
+			</div>
+		</form>
+
+		<form class="form-horizontal form-box">
+
+			<!-- one field -->
+			<div class="form-group">
+				<label for="inputString" class="col-sm-2 control-label">String</label>
+				<div class="col-sm-10">
+					<input name="string" type="text" class="form-control" id="inputString" placeholder="String" data-validate="isString">
+				</div>
+			</div>
+			<!-- /one field -->
+
+			<!-- one field -->
+			<div class="form-group">
+				<label for="inputPhone" class="col-sm-2 control-label">Phone</label>
+				<div class="col-sm-10">
+					<input name="phone" type="tel" class="form-control" id="inputPhone" placeholder="Phone" data-validate="isPhone" >
+				</div>
+			</div>
+			<!-- /one field -->
+
+			<!-- one field -->
+			<div class="form-group">
+				<label for="inputDigits" class="col-sm-2 control-label">Digits</label>
+				<div class="col-sm-10">
+					<input name="digit" type="text" class="form-control require" id="inputDigits" placeholder="Digits" data-validate="isDigit">
+				</div>
+			</div>
+			<!-- /one field -->
+
+			<!-- one field -->
+			<div class="form-group">
+				<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10">
+					<input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" data-validate="isEmail">
+				</div>
+			</div>
+			<!-- /one field -->
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button name="submit" type="submit" class="btn btn-default" value="as">Тест</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</body>
+</html>
