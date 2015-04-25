@@ -14,7 +14,13 @@
 			});
 
 			$(".form-box-new").mailer({
-				validation: true
+				validation: true,
+				messageSetting: {
+					subject: 'Hello, im test',
+					mailTo: {
+						email: 'vovikems@gmail.com'
+					}
+				}
 			});
 
 		});

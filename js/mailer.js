@@ -22,7 +22,19 @@
 				validationAttr: 'data-validate',
 				templateName: 'mail.tpl',
 				templateDir: 'template/',
-				url: '../mail.php'
+				url: '../mail.php',
+				messageSetting: {
+					subject: 'mailer.js works!',
+					mailFrom: {
+						email: 'no-reply@' + location.hostname,
+						name: 'Mailer Js'
+					},
+					mailTo: {
+						email: 'example@example.com',
+						name: 'First Name'
+					}
+				},
+
 			},
 			NewMailerApp;
 
@@ -34,11 +46,14 @@
 			/*
 			 * Default config
 			 * */
-			this.config = $.extend(globalConfig, myConfig);
-			this.config = $.extend(globalConfig,{
+			this.config = $.extend(true, globalConfig, myConfig);
+			/*
+			* Extend individual param
+			* */
+			this.config = $.extend(true,{
 				hasError: false,
 				data: {}
-			});
+			}, this.config);
 		};
 
 		/*
@@ -171,7 +186,8 @@
 					formId : this.getId(),
 					useCaptcha: this.config.useCaptcha,
 					templateDir: this.config.templateDir,
-					templateName: this.config.templateName
+					templateName: this.config.templateName,
+					messageSetting: this.config.messageSetting
 				},
 
 				//build post data
