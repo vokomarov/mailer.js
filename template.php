@@ -5,46 +5,19 @@
  * Date: 25.04.2015
  * Time: 15:
  */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 class Template{
 
-    /*
-     * Enable or disable caching
-     * */
-    protected $caching = false;
-
-    /*
-     * Cache directory
-     * */
-    protected $cache_dir = "";
-
-    /*
-     * Cache file extension
-     * */
-    protected $cache_ext = "";
     protected $tpl_dir = "/template/";
     protected $tpl_content = "";
-
 
     public function __construct($data = array()){
 
         if(isset($data['tpl_dir']))
             $this->tpl_dir = $data['tpl_dir'];
 
-        if(isset($data['caching']))
-            if($data['caching'] == 'true'){
-                $this->caching = true;
-                if(isset($data['cache_dir']) && $data['cache_dir'] != '')
-                    $this->cache_dir = $data['cache_dir'];
-                if(isset($data['cache_ext']) && $data['cache_ext'] != '')
-                    $this->cache_ext = $data['cache_ext'];
-            }
-
         if(isset($data['name']) && $data['name'] !== "")
             $this->setTemplate($data['name']);
-
 
     }
 

@@ -38,6 +38,7 @@ foreach($post_setting as $name=>$value){
     $setting[$name] = trim($value);
 }
 
+//if captcha on - verify
 if($setting['useCaptcha'] === 'true'){
     if(captureData($setting['captcha_code'])){
         //captcha ok
@@ -47,14 +48,16 @@ if($setting['useCaptcha'] === 'true'){
     }
 }
 
+
 if(!$someError['captcha']){
 
+    //create setting for template engine
     $tpl_setting = array(
         'tpl_dir' => $setting['templateDir']
     );
     $tpl = new Template($tpl_setting);
     if(!$tpl->setTemplate($setting['templateName'])){
-        //file dont open
+        //file don't open
         $response['status'] = 'error';
         $response['error'] = array(
             'title' => "Template file open error",
@@ -63,15 +66,15 @@ if(!$someError['captcha']){
         sendResponse($response);
     }
 
+    //append form data to template
     foreach($data as $name=>$value){
         $tpl->set($name, $value);
     }
 
+    //send response
     $response['status'] = 'success';
     $response['message'] = $tpl->get();
     sendResponse($response);
-
-
 }else{
     //captcha error
     $response['status'] = 'error';
