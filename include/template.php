@@ -34,7 +34,7 @@ class Template{
         }
     }
 
-    // Замена переменных
+    //
     function replace($data){
         $this->tpl_content = str_replace(array_keys($data), array_values($data), $this->tpl_content);
         return true;

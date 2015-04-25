@@ -9,7 +9,6 @@
 
 require_once('config.php');
 require_once('libs.php');
-require_once('template.php');
 
 /* Get captcha image
  * <img src="/captcha/captcha.php" id="cap" alt="" width="148"><br>
@@ -52,6 +51,7 @@ if($setting['useCaptcha'] === 'true'){
 if(!$someError['captcha']){
 
     //create setting for template engine
+    require_once('template.php');
     $tpl_setting = array(
         'tpl_dir' => $setting['templateDir']
     );
@@ -70,6 +70,8 @@ if(!$someError['captcha']){
     foreach($data as $name=>$value){
         $tpl->set($name, $value);
     }
+
+    //send message
 
     //send response
     $response['status'] = 'success';
