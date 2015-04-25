@@ -9,39 +9,82 @@
 
 require_once('config.php');
 require_once('libs.php');
+require_once('template.php');
 
 /* Get captcha image
  * <img src="/captcha/captcha.php" id="cap" alt="" width="148"><br>
  * <a href="" onClick="$('#cap').attr('src','/captcha/captcha.php?1='+Math.random());return false;">обновить</a>
  * */
-//print_r($_POST);
-//print_r($_POST['data']);
-echo 'callback by formid: '.$_POST['setting']['formId'].'\n';
-foreach($_POST['data'] as $name=>$value){
-    echo 'name['.$name.'] = '.$value.'\n';
-}
-exit;
-
-function captureData($s){
-	if (strlen($s) == 4 && preg_match('/\d{4}/',$s)) {
-		$d4 = (abs(($s[0]+$s[1]-$s[2]+10)*($s[0]/$s[1]+$s[2]))*date('j')*date('n'))%10;
-		if ($d4 == $s[3]) $capOk = 1;
-		else $capOk = 0;
-	} else $capOk = 0;
-	return	$capOk;
-}
-$err = true;
-if(isset($_POST['captcha'])){
-	if(captureData($_POST['captcha'])){
-		//captcha ok
-		$err = false;
-	}else{
-		$err = true;
-	}
-}
 
 
-if(!$err){
+
+//for somethinks error
+$someError = new ArrayObject();
+$someError['captcha'] = false;
+
+//main response variable
+$response = new ArrayObject();
+
+//data and setting
+$data = new ArrayObject();
+$setting = new ArrayObject();
+$post_data = $_POST['data'];
+$post_setting = $_POST['setting'];
+
+foreach($post_data as $name=>$value){
+    $data[$name] = trim($value);
+}
+foreach($post_setting as $name=>$value){
+    $setting[$name] = trim($value);
+}
+
+if($setting['useCaptcha'] === 'true'){
+    if(captureData($setting['captcha_code'])){
+        //captcha ok
+        $someError['captcha'] = false;
+    }else{
+        $someError['captcha'] = true;
+    }
+}
+
+if(!$someError['captcha']){
+
+    $tpl_setting = array(
+        'tpl_dir' => $setting['templateDir']
+    );
+    $tpl = new Template($tpl_setting);
+    if(!$tpl->setTemplate($setting['templateName'])){
+        //file dont open
+        $response['status'] = 'error';
+        $response['error'] = array(
+            'title' => "Template file open error",
+            'description' => 'Check the path to template file or file name'
+        );
+        sendResponse($response);
+    }
+
+    foreach($data as $name=>$value){
+        $tpl->set($name, $value);
+    }
+
+    $response['status'] = 'success';
+    $response['message'] = $tpl->get();
+    sendResponse($response);
+
+
+}else{
+    //captcha error
+    $response['status'] = 'error';
+    $response['error'] = array(
+        'title' => "Captcha don't not match",
+        'description' => 'You input invalid captcha code'
+    );
+    sendResponse($response);
+}
+
+
+
+if(!$someError['captcha']){
 	if(isset($_POST['formid'])){
 
 		//get form id
