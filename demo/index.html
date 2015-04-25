@@ -14,7 +14,13 @@
 			});
 
 			$(".form-box-new").mailer({
-				validation: true
+				validation: true,
+				messageSetting: {
+					subject: 'Hello, im test',
+					mailTo: {
+						email: 'vovikems@gmail.com'
+					}
+				}
 			});
 
 		});
@@ -42,7 +48,7 @@
 			<div class="form-group">
 				<label for="inputString" class="col-sm-2 control-label">String</label>
 				<div class="col-sm-10">
-					<input name="username" type="text" class="form-control"  placeholder="String" data-validate="isString">
+					<input name="test" type="text" class="form-control"  placeholder="String" data-validate="isString">
 				</div>
 			</div>
 			<!-- /one field -->
