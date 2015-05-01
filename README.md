@@ -63,7 +63,9 @@ $(document).ready(function(){
 | validation      | boolean       | false                      | Вмикає перевірку даних полів         |
 | showMessages    | boolean       | true                       | Вмикає виведення повідомлень                       |
 | useCaptcha      | boolean       | false                      | Вмикає захист від ботів (капчу)                       |
-| errorClass      | string        | 'error'                    | Клас для поля з невірними даними                       |
+| errorClass      | string        | ```javascript
+									'error'
+									```                    | Клас для поля з невірними даними                       |
 | requireClass    | string        | 'require'                  | Клас для обовязкового поля                       |
 | validationAttr  | string        | 'data-validate'            | Атрибут для типу даних поля                       |
 | templateName    | string        | 'mail.tpl'                 | Імя файлу шаблона повідомлення                       |
