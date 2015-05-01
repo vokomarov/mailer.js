@@ -33,7 +33,7 @@
 						email: 'example@example.com',
 						name: 'First Name'
 					}
-				},
+				}
 
 			},
 			NewMailerApp;
