@@ -58,21 +58,25 @@ $(document).ready(function(){
 ### Параметри
 Параметри, відмічені як (require) обовязкові до ініціалізації
 
-| Параметр        | Тип           | Значення за замовчуванням  | Опис                   |
-| --------------- | ------------- | -------------------------- | ---------------------- |
-| validation      | boolean       | false                      | Вмикає перевірку даних полів         |
-| showMessages    | boolean       | true                       | Вмикає виведення повідомлень                       |
-| useCaptcha      | boolean       | false                      | Вмикає захист від ботів (капчу)                       |
-| errorClass      | string        | ```javascript
-									'error'
-									```                    | Клас для поля з невірними даними                       |
-| requireClass    | string        | 'require'                  | Клас для обовязкового поля                       |
-| validationAttr  | string        | 'data-validate'            | Атрибут для типу даних поля                       |
-| templateName    | string        | 'mail.tpl'                 | Імя файлу шаблона повідомлення                       |
-| templateDir     | string        | 'template/'                | Шлях папки з шаблонами                       |
-| url             | string        | '../mail.php'              |                        |
-| messageSetting (require) | object        | false                      |                        |
-
+| Параметр                                 | Тип           | Значення за замовчуванням  | Опис                                                          |
+| ---------------------------------------- | ------------- | -------------------------- | ------------------------------------------------------------- |
+| validation                               | boolean       | false                      | Вмикає перевірку даних полів                                  |
+| showMessages                             | boolean       | true                       | Вмикає виведення повідомлень                                  |
+| useCaptcha                               | boolean       | false                      | Вмикає захист від ботів (капчу)                               |
+| errorClass                               | string        | 'error'                    | Клас для поля з невірними даними                              |
+| requireClass                             | string        | 'require'                  | Клас для обовязкового поля                                    |
+| validationAttr                           | string        | 'data-validate'            | Атрибут для типу даних поля                                   |
+| templateName                             | string        | 'mail.tpl'                 | Імя файлу шаблона повідомлення                                |
+| templateDir                              | string        | 'template/'                | Шлях до папки з шаблонами                                     |
+| url                                      | string        | '../mail.php'              | Шлях до обробника та відправника email                        |
+| messageSetting (require)                 | object        | object                     | Налаштування для відправки на email                           |
+| messageSetting.subject                   | string        | 'mailer.js works!'         | Тема повідомлення                                             |
+| messageSetting.mailFrom                  | object        | object                     | Налаштування відправника                                      |
+| messageSetting.mailFrom.email            | string        | 'no-reply@[yourhostname]'  | Email відправника                                             |
+| messageSetting.mailFrom.name             | string        | 'Mailer Js'                | Імя відправника                                               |
+| messageSetting.mailTo                    | object        | object                     | Налаштування отримувача                                       |
+| messageSetting.mailTo.email (require)    | string        | 'example@example.com'      | Email отримувача                                       |
+| messageSetting.mailTo.name               | string        | 'First Name'               | Імя отримувача                                       |
 
 
 ## Типи данних для валідації
