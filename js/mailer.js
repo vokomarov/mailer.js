@@ -5,8 +5,13 @@
 
 	/*
 	* Mailer Application Constructor
-	* @var id - Identifier for each form
-	* @method getId - Return this id
+	* @var    int id     - Identifier for this form
+	* @method getId      - Get form identifier
+	* @mathod state      - Set field state (error or valid)
+	* @mathod validate   - Validate field data
+	* @mathod log        - Special console log with identifier
+	* @mathod clean      - Clean data before again build
+	* @mathod send       - Send data to main mail file
 	* */
 	var MailerApp = (function (myConfig){
 		var id = 0,
@@ -58,7 +63,7 @@
 
 		/*
 		* Method Get form id
-		* @return int : current form id
+		* @return int - this form id
 		* */
 		NewMailerApp.prototype.getId = function(){
 			return id;
@@ -66,9 +71,9 @@
 
 		/*
 		* Method State Element
-		* @param Object : Object for apply state
-		* @param Bool : State value
-		* @return Object : This object
+		* @param  object   - Object for apply state
+		* @param  boolean  - State value
+		* @return object   - This object
 		* */
 		NewMailerApp.prototype.state = function(obj, state){
 			if(state){
@@ -87,9 +92,9 @@
 
 		/*
 		* Method Validate data
-		* @param Object : Object for input tag
-		* @return String : Value input tag, if pass
-		* @return Bool : False, if not pass
+		* @param  object obj - Object for input tag
+		* @return string     - Value input tag, if pass
+		* @return boolean    - False, if not pass
 		* */
 		NewMailerApp.prototype.validate = function(obj){
 
@@ -150,9 +155,9 @@
 
 		/*
 		* Method Log message
-		* @param string - message for log
-		* @param object - object for log
-		* @return string
+		* @param  string message - message for log
+		* @param  object message - object for log
+		* @return string         - instanse of log
 		* */
 		NewMailerApp.prototype.log = function(message){
 			if(typeof message === 'string'){
@@ -161,12 +166,12 @@
 				console.log('mailer.js[form-'+id+']: object log');
 				return console.log(message);
 			}
-
+			return false;
 		};
 
 		/*
 		* Method Clean - Clean previous data
-		* @return object : This object
+		* @return object - this instance object
 		* */
 		NewMailerApp.prototype.clean = function(){
 			this.config.data = {};
@@ -175,9 +180,7 @@
 
 		/*
 		* Method Send - send user data to server
-		* @param function : call function before send request
-		* @param function : call function after send request
-		* @return object : response from the server
+		* @return object - response from the server (JSON)
 		* */
 		NewMailerApp.prototype.send = function(){
 			var

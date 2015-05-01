@@ -75,8 +75,8 @@ $(document).ready(function(){
 | messageSetting.mailFrom.email            | string        | 'no-reply@[yourhostname]'  | Email відправника                                             |
 | messageSetting.mailFrom.name             | string        | 'Mailer Js'                | Імя відправника                                               |
 | messageSetting.mailTo                    | object        | object                     | Налаштування отримувача                                       |
-| messageSetting.mailTo.email (require)    | string        | 'example@example.com'      | Email отримувача                                       |
-| messageSetting.mailTo.name               | string        | 'First Name'               | Імя отримувача                                       |
+| messageSetting.mailTo.email (require)    | string        | 'example@example.com'      | Email отримувача                                              |
+| messageSetting.mailTo.name               | string        | 'First Name'               | Імя отримувача                                                |
 
 
 ## Типи данних для валідації
