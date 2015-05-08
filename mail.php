@@ -48,6 +48,7 @@ if(!$some_error['captcha']){
     $tpl_setting = array(
         'tpl_dir' => $setting['templateDir']
     );
+
     $tpl = new Template($tpl_setting);
 
     if(!$tpl->setTemplate($setting['templateName'])){
