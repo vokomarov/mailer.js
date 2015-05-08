@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: VovanMS
- * Date: 25.04.2015
- * Time: 15:
- */
 
 class Template{
 
