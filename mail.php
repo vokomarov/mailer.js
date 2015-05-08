@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: VovanMS
- * Date: 13.01.15
- * Time: 17:09
- * Description: Обробник данних для повідомлень
- */
 define('INCLUDE_DIR', 'include/');
 
 require_once(INCLUDE_DIR . 'libs.php');
@@ -15,20 +8,14 @@ require_once(INCLUDE_DIR . 'libs.php');
  * <a href="" onClick="$('#cap').attr('src','/captcha/captcha.php?1='+Math.random());return false;">обновить</a>
  * */
 
-
-//for somethinks error
-$some_error = new ArrayObject();
-$some_error['captcha'] = false;
-
-//main response variable
-$response = new ArrayObject();
-
-//data and setting
 $data = new ArrayObject();
 $setting = new ArrayObject();
+$response = new ArrayObject();
+$some_error = new ArrayObject();
+
+//parse incoming data
 $post_data = $_POST['data'];
 $post_setting = $_POST['setting'];
-
 foreach($post_data as $name=>$value){
     $data[$name] = trim($value);
 }
@@ -39,11 +26,18 @@ foreach($post_setting as $name=>$value){
 //if captcha on - verify
 if($setting['useCaptcha'] === 'true'){
     if(captureData($setting['captcha_code'])){
-        //captcha ok
+
+	    //captcha right
         $some_error['captcha'] = false;
     }else{
+
+	    //captcha wrong
         $some_error['captcha'] = true;
     }
+}else{
+
+	//captcha off
+	$some_error['captcha'] = false;
 }
 
 
@@ -55,6 +49,7 @@ if(!$some_error['captcha']){
         'tpl_dir' => $setting['templateDir']
     );
     $tpl = new Template($tpl_setting);
+
     if(!$tpl->setTemplate($setting['templateName'])){
         //file don't open
         $response['status'] = 'error';

@@ -15,9 +15,9 @@ function captureData($s){
 }
 
 /**
- * @param $response array - array
+ * Sending response to frontend
+ * @param $response array - array for send callback to client
  */
-
 function sendResponse($response){
     echo json_encode($response);
     exit;

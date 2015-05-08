@@ -7,11 +7,12 @@
 	* Mailer Application Constructor
 	* @var    int id     - Identifier for this form
 	* @method getId      - Get form identifier
-	* @mathod state      - Set field state (error or valid)
-	* @mathod validate   - Validate field data
-	* @mathod log        - Special console log with identifier
-	* @mathod clean      - Clean data before again build
-	* @mathod send       - Send data to main mail file
+	* @method state      - Set field state (error or valid)
+	* @method validate   - Validate field data
+	* @method log        - Special console log with identifier
+	* @method clean      - Clean data before again build
+	* @method send       - Send data to main mail file
+	* @method notify     - Show notify for user
 	* */
 	var MailerApp = (function (myConfig){
 		var id = 0,
@@ -218,6 +219,23 @@
 			return false;
 		};
 
+
+		NewMailerApp.prototype.notify = function(message){
+			console.log(typeof $.toasty);
+
+			if(typeof $.toasty === 'undefined'){
+				this.log('Toasty library not defined. For user notify toasty required.');
+				return false;
+			}
+			if(typeof message === 'object'){
+
+			}else{
+
+			}
+			return true;
+
+		};
+
 		return NewMailerApp;
 	}());
 
@@ -232,6 +250,8 @@
 				mailer = new MailerApp(my_param);
 
 			mailer.log("registered form");
+
+			mailer.notify('alala');
 
 			if(!s_button){
 				s_button = $this.find("[name='submit']");
