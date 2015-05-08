@@ -227,6 +227,7 @@
 				this.log('Toasty library not defined. For user notify toasty required.');
 				return false;
 			}
+			//toasty library loaded
 			if(typeof message === 'object'){
 
 			}else{
