@@ -48,6 +48,18 @@ $(document).ready(function(){
 Наприклад:
 
 ```javascript
+var param = {
+	validate: true
+}
+$(document).ready(function(){
+    $("#form-box").mailer(param);
+});
+```
+
+Або простіше:
+
+
+```javascript
 $(document).ready(function(){
     $("#form-box").mailer({
         validate: true
