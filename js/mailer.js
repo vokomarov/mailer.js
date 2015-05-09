@@ -39,6 +39,17 @@
 						email: 'example@example.com',
 						name: 'First Name'
 					}
+				},
+				notifySetting: {
+					autoHide: 3000,
+					modal: false,
+					position: 'tr',
+					closeable: true,
+					showSpeed: 500,
+					hideSpeed: 500,
+					anim: 'slide fade',
+					easing: 'easeInOutBack',
+					hideAnimEasing: 'easeOutBack'
 				}
 
 			},
@@ -183,7 +194,7 @@
 		* Method Send - send user data to server
 		* @return object - response from the server (JSON)
 		* */
-		NewMailerApp.prototype.send = function(){
+		NewMailerApp.prototype.send = function(success){
 			var
 				//setting for php script
 				setting = {
@@ -210,6 +221,7 @@
 					},
 					success: function(response){
 						console.log(JSON.parse(response));
+						success(JSON.parse(response));
 					}
 
 				};
@@ -220,18 +232,29 @@
 		};
 
 
+		/**
+		 * Notify message
+		 * @param message string | object - input message param for notify
+		 * @return bool - false if toasty library not found or wrong input object
+		 */
 		NewMailerApp.prototype.notify = function(message){
-			console.log(typeof $.toasty);
 
-			if(typeof $.toasty === 'undefined'){
+			if(typeof $.fn.toasty === 'undefined'){
 				this.log('Toasty library not defined. For user notify toasty required.');
 				return false;
 			}
 			//toasty library loaded
-			if(typeof message === 'object'){
-
+			if(typeof message === 'object' && typeof message.message === 'string'){
+				$().toasty($.extend(true, this.config.notifySetting, {
+					title: message.title,
+					message: message.message
+				}));
+			}else if(typeof message === 'string'){
+				$().toasty($.extend(true, this.config.notifySetting, {
+					message: message
+				}));
 			}else{
-
+				return false;
 			}
 			return true;
 
@@ -251,8 +274,6 @@
 				mailer = new MailerApp(my_param);
 
 			mailer.log("registered form");
-
-			mailer.notify('alala');
 
 			if(!s_button){
 				s_button = $this.find("[name='submit']");
@@ -290,13 +311,19 @@
 						mailer.log("Validation pass");
 					//	mailer.log(mailer.config.data);
 
-						mailer.send();
+						mailer.send(function(response){
+							mailer.notify(response);
+						});
 
 
 
 					}else{
 						//error, show message
-						mailer.log("Validation error.");
+						mailer.log("Validation error");
+						mailer.notify({
+							title: 'Validation error',
+							message: 'Please, input correct data'
+						});
 					}
 
 
